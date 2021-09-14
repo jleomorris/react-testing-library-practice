@@ -13,9 +13,10 @@ exports[`renders homepage unchanged 1`] = `
       <span
         className="text-purple-500"
       >
-        NextJS Modern
+        React Testing Library
       </span>
-       Template
+       
+      Practice
     </h1>
     <section
       className="flex flex-wrap justify-center items-baseline mt-10"

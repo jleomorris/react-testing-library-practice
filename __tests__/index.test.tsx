@@ -16,9 +16,13 @@ describe("Home", () => {
     render(<Home />);
 
     const heading = screen.getByRole("heading", {
-      name: "NextJS Modern Template",
+      name: "React Testing Library Practice",
     });
 
+    // Less specific alternative
+    const heading2 = screen.getByText("React Testing Library");
+
     expect(heading).toBeInTheDocument();
+    expect(heading2).toBeInTheDocument();
   });
 });
