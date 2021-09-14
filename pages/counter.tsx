@@ -1,6 +1,10 @@
 import Head from "next/head";
+import { useState } from "react";
 
 const Counter = () => {
+  const [counterValue, setCounterValue] = useState(0);
+  const [inputValue, setInputValue] = useState(1);
+
   return (
     <div className="p-24 w-screen min-h-screen flex justify-center items-center bg-gray-100">
       <Head>
@@ -13,24 +17,29 @@ const Counter = () => {
         <h1 className="text-8xl font-bold text-purple-500" data-testid="header">
           Counter Practice
         </h1>
-        {/* <section className="flex flex-wrap justify-center items-baseline mt-10">
-          <ul className="my-5 sm:my-10 space-y-5 bg-white p-20 rounded-xl sm:mr-10 text-left list-disc shadow-md">
-            <li className="text-3xl">Update homepage at </li>
-            <li className="text-3xl">Add pages to</li>
-            <li className="text-3xl">Add redux slices to </li>
-            <li className="text-3xl">Add tests to </li>
-          </ul>
-          <div className="my-5 sm:my-10 space-y-5 bg-white p-20 rounded-xl shadow-md">
-            <h2 className="text-left text-4xl font-bold">Stack</h2>
-            <ul className="text-left space-y-5 list-disc">
-              <li className="text-3xl">NextJS</li>
-              <li className="text-3xl">TailwindCSS</li>
-              <li className="text-3xl">Typescript</li>
-              <li className="text-3xl">Redux Toolkit</li>
-              <li className="text-3xl">Jest & React Testing Library</li>
-            </ul>
-          </div>
-        </section> */}
+        <h2 className="my-10 text-6xl font-bold" data-testid="counter">
+          {counterValue}
+        </h2>
+        <div className="flex justify-center">
+          <button
+            className="border border-gray-400 py-3 px-5 rounded-sm"
+            data-testid="subtract-btn"
+          >
+            -
+          </button>
+          <input
+            type="number"
+            className="text-center text-2xl p-2 font-bold"
+            data-testid="input"
+            value={inputValue}
+          />
+          <button
+            className="border border-gray-400 py-3 px-5 rounded-sm"
+            data-testid="add-btn"
+          >
+            +
+          </button>
+        </div>
       </main>
     </div>
   );
