@@ -5,6 +5,14 @@ const Counter = () => {
   const [counterValue, setCounterValue] = useState(0);
   const [inputValue, setInputValue] = useState(1);
 
+  const addToCounter = () => {
+    setCounterValue(counterValue + inputValue);
+  };
+
+  const subractFromCounter = () => {
+    setCounterValue(counterValue - inputValue);
+  };
+
   return (
     <div className="p-24 w-screen min-h-screen flex justify-center items-center bg-gray-100">
       <Head>
@@ -24,6 +32,7 @@ const Counter = () => {
           <button
             className="border border-gray-400 py-3 px-5 rounded-sm"
             data-testid="subtract-btn"
+            onClick={subractFromCounter}
           >
             -
           </button>
@@ -37,6 +46,7 @@ const Counter = () => {
           <button
             className="border border-gray-400 py-3 px-5 rounded-sm"
             data-testid="add-btn"
+            onClick={addToCounter}
           >
             +
           </button>
