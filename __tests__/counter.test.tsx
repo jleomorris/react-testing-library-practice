@@ -133,4 +133,46 @@ describe("Counter", () => {
 
     expect(counterEl.textContent).toBe("-5");
   });
+
+  it("Adding and subtracting combinations adjusts the counter correctly", () => {
+    const { getByTestId } = render(<Counter />);
+    const subtractBtnEl = getByTestId("subtract-btn");
+    const addBtnEl = getByTestId("add-btn");
+    const counterEl = getByTestId("counter");
+    const inputEl = getByTestId("input");
+
+    fireEvent.change(inputEl, {
+      target: {
+        value: "10",
+      },
+    });
+
+    // + 10 * 4
+    for (let i = 0; i < 4; i += 1) {
+      fireEvent.click(addBtnEl);
+    }
+
+    // - 10 x 2
+    for (let i = 0; i < 2; i += 1) {
+      fireEvent.click(subtractBtnEl);
+    }
+
+    expect(counterEl.textContent).toBe("20");
+
+    fireEvent.change(inputEl, {
+      target: {
+        value: "5",
+      },
+    });
+
+    // + 1 * 5
+    fireEvent.click(addBtnEl);
+
+    // - 2 x 5
+    for (let i = 0; i < 2; i += 1) {
+      fireEvent.click(subtractBtnEl);
+    }
+
+    expect(counterEl.textContent).toBe("15");
+  });
 });
