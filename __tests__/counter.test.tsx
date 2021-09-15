@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Counter from "../pages/counter";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
 describe("Counter", () => {
@@ -46,7 +46,7 @@ describe("Counter", () => {
 
     // Alternative way
     // const { getByTestId } = render(<Counter />);
-    // const addBtn = getByTestId("add-btn") as HTMLInputElement;
+    // const addBtn = getByTestId("add-btn");
     // expect(addBtn.textContent).toBe("+");
   });
 
@@ -57,7 +57,22 @@ describe("Counter", () => {
 
     // Alternative way
     // const { getByTestId } = render(<Counter />);
-    // const subtractBtn = getByTestId("subtract-btn") as HTMLInputElement;
+    // const subtractBtn = getByTestId("subtract-btn");
     // expect(subtractBtn.textContent).toBe("-");
+  });
+
+  it("changing value of input works correctly", () => {
+    const { getByTestId } = render(<Counter />);
+    const inputEl = getByTestId("input") as HTMLInputElement;
+
+    expect(inputEl.value).toBe("1");
+
+    fireEvent.change(inputEl, {
+      target: {
+        value: 5,
+      },
+    });
+
+    expect(inputEl.value).toBe("5");
   });
 });

@@ -32,6 +32,7 @@ const Counter = () => {
             className="text-center text-2xl p-2 font-bold"
             data-testid="input"
             value={inputValue}
+            onChange={(e) => setInputValue(Number(e.target.value))}
           />
           <button
             className="border border-gray-400 py-3 px-5 rounded-sm"
