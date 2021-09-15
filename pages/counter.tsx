@@ -25,7 +25,12 @@ const Counter = () => {
         <h1 className="text-8xl font-bold text-purple-500" data-testid="header">
           Counter Practice
         </h1>
-        <h2 className="my-10 text-6xl font-bold" data-testid="counter">
+        <h2
+          className={`my-10 text-6xl font-bold ${
+            counterValue >= 100 ? "text-green-500" : ""
+          } ${counterValue <= -100 ? "text-red-500" : ""}`}
+          data-testid="counter"
+        >
           {counterValue}
         </h2>
         <div className="flex justify-center">

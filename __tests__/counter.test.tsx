@@ -175,4 +175,54 @@ describe("Counter", () => {
 
     expect(counterEl.textContent).toBe("15");
   });
+
+  it("Counter is correct color (has correct class name) ", () => {
+    const { getByTestId } = render(<Counter />);
+    const counterEl = getByTestId("counter");
+    const inputEl = getByTestId("input");
+    const subtractBtnEl = getByTestId("subtract-btn");
+    const addBtnEl = getByTestId("add-btn");
+
+    // Standard styling
+    expect(counterEl.className).toBe("my-10 text-6xl font-bold  ");
+
+    fireEvent.change(inputEl, {
+      target: {
+        value: "50",
+      },
+    });
+
+    // +50
+    fireEvent.click(addBtnEl);
+
+    expect(counterEl.className).toBe("my-10 text-6xl font-bold  ");
+
+    // +50
+    fireEvent.click(addBtnEl);
+
+    expect(counterEl.className).toBe(
+      "my-10 text-6xl font-bold text-green-500 "
+    );
+
+    // +50
+    fireEvent.click(addBtnEl);
+
+    expect(counterEl.className).toBe(
+      "my-10 text-6xl font-bold text-green-500 "
+    );
+
+    // - 2 x 50
+    for (let i = 0; i < 2; i += 1) {
+      fireEvent.click(subtractBtnEl);
+    }
+
+    expect(counterEl.className).toBe("my-10 text-6xl font-bold  ");
+
+    // - 4 x 50
+    for (let i = 0; i < 4; i += 1) {
+      fireEvent.click(subtractBtnEl);
+    }
+
+    expect(counterEl.className).toBe("my-10 text-6xl font-bold  text-red-500");
+  });
 });
